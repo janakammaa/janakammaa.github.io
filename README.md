@@ -1,2 +1,1 @@
-# protfolio
-My Protfolio Website
+# Janaki Samala Portfolio
