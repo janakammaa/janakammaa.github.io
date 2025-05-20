@@ -7,4 +7,4 @@ pronouns: "she/her"
 website: "http://janakammaa.github.io/"
 ---
 
-Highly skilled and experienced law enforcement professional with over two decades of service in various specialized units. Adept at conducting complex investigations, coordinating tactical operations, and providing leadership in high-pressure situations. Known for exceptional problem-solving abilities, strategic thinking, and dedication to upholding the law. Seeking opportunities to leverage expertise in a challenging environment where I can continue to make a meaningful impact.
+Hey, I'm Janaki! I currently work as a software engineer. Experience in designing and developing APIs, building scalable analytics systems and crafting data-driven solutions. My core strengths lie in Python programming and SQL, and I enjoy working at the intersection of data engineering and backend development. Whether it's architecting efficient data pipelines or optimizing query performance, I’m always eager to dig deeper and deliver clean, maintainable solutions.

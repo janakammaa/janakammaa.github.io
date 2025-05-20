@@ -1,15 +1,11 @@
 ---
-title: Bachelor of Science in Criminal Justice
-location: University of California, Los Angeles (UCLA)
+title: Bachelor of Engineering
+location: University of Andhra, Andhra Pradesh (AP)
 url: http://foeberoz.gm/kuj
-institute: University of California
-date: 1970-1975
+institute: University of Andhra
+date: 2013-2016
 tags:
   [
-    "Criminal Justice",
-    "Law Enforcement",
-    "Legal Studies",
-    "Public Safety",
-    "Court System",
+    "Engineering",
   ]
 ---

@@ -27,7 +27,7 @@ const { timeframe, title, description, url, tags, url_name, location } =
     </div>
 
     <div class="grid grid-cols-3 gap-4 place-items-center">
-      <div class="self-start col-span-2 justify-self-start text-left">
+      <div class="self-start col-span-3 justify-self-start text-left">
         <article class="prose text-secondary">
           <Fragment set:html={description}></Fragment>
         </article>
@@ -39,13 +39,17 @@ const { timeframe, title, description, url, tags, url_name, location } =
           </div>
         )}
       </div>
-
-      <div class="self-center justify-self-end">
-        <a href={url} target="_blank" class="link link-hover text-sm text-right flex justify-center items-center">
-          {url_name}
-          {url !== "#" && <Icon name="carbon:link" class="w-4 h-4 ml-2" />}
-        </a>
-      </div>
     </div>
+
+    {
+      url ? 
+        <div class="self-center justify-self-end">
+            <a href={url} target="_blank" class="link link-hover text-sm text-right flex justify-center items-center">
+              {url_name}
+              {url !== "#" && <Icon name="carbon:link" class="w-4 h-4 ml-2" />}
+            </a>
+          </div>
+      : ""
+    }
   </div>
 </div>

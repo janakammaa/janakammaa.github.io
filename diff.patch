@@ -1,0 +1,269 @@
+diff --git a/README.md b/README.md
+index 4a4d63d..4767aa9 100644
+--- a/README.md
++++ b/README.md
+@@ -1 +1,2 @@
+-# Janaki Samala Portfolio
+\ No newline at end of file
++# Janaki Samala Portfolio
++Welcome to my personal portfolio website!
+\ No newline at end of file
+diff --git a/src/components/Card.astro b/src/components/Card.astro
+index 3fa9d3a..095ba3a 100644
+--- a/src/components/Card.astro
++++ b/src/components/Card.astro
+@@ -27,7 +27,7 @@ const { timeframe, title, description, url, tags, url_name, location } =
+     </div>
+ 
+     <div class="grid grid-cols-3 gap-4 place-items-center">
+-      <div class="self-start col-span-2 justify-self-start text-left">
++      <div class="self-start col-span-3 justify-self-start text-left">
+         <article class="prose text-secondary">
+           <Fragment set:html={description}></Fragment>
+         </article>
+@@ -39,13 +39,18 @@ const { timeframe, title, description, url, tags, url_name, location } =
+           </div>
+         )}
+       </div>
+-
+-      <div class="self-center justify-self-end">
+-        <a href={url} target="_blank" class="link link-hover text-sm text-right flex justify-center items-center">
+-          {url_name}
+-          {url !== "#" && <Icon name="carbon:link" class="w-4 h-4 ml-2" />}
+-        </a>
+-      </div>
+     </div>
++
++    {
++      url ? 
++        <div class="self-center justify-self-end">
++            <a href={url} target="_blank" class="link link-hover text-sm text-right flex justify-center items-center">
++              {url_name}
++              {url !== "#" && <Icon name="carbon:link" class="w-4 h-4 ml-2" />}
++            </a>
++          </div>
++      :
++      ""
++    }
+   </div>
+ </div>
+\ No newline at end of file
+diff --git a/src/components/Container.astro b/src/components/Container.astro
+index ec92f4f..248bbdd 100644
+--- a/src/components/Container.astro
++++ b/src/components/Container.astro
+@@ -8,7 +8,6 @@ const works = await Astro.glob("../pages/works/*.md");
+ const projects = await Astro.glob("../pages/projects/*.md");
+ const studies = await Astro.glob("../pages/studies/*.md");
+ const certificates = await Astro.glob("../pages/certificates/*.md");
+-const blogs = await Astro.glob("../pages/blogs/*.md");
+ const contact = await Astro.glob("../pages/contact/*.md");
+ const PDF = "/resume.pdf";
+ ---
+@@ -89,22 +88,6 @@ const PDF = "/resume.pdf";
+     }
+   </AccordionLayout>
+ 
+-  <AccordionLayout title={"Blogs"} icon={"carbon:pen"}>
+-    {
+-      blogs.map((item) => {
+-        return (
+-          <Card
+-            title={item.frontmatter.title}
+-            timeframe={item.frontmatter.date}
+-            description={item.compiledContent()}
+-            url={item.frontmatter.url}
+-            url_name={item.frontmatter.url_name}
+-          />
+-        );
+-      })
+-    }
+-  </AccordionLayout>
+-
+   <AccordionLayout title={"Files"} icon={"carbon:volume-file-storage"}>
+     <div class="flex justify-center w-full">
+       <div
+diff --git a/src/layouts/BaseLayout.astro b/src/layouts/BaseLayout.astro
+index d9a1a14..65da034 100644
+--- a/src/layouts/BaseLayout.astro
++++ b/src/layouts/BaseLayout.astro
+@@ -3,7 +3,7 @@
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-    <title>Janaki Samala CV</title>
++    <title>Janaki Samala</title>
+ </head>
+ <body>
+     <slot />
+diff --git a/src/pages/about/about.md b/src/pages/about/about.md
+index 5bac332..850f2fe 100644
+--- a/src/pages/about/about.md
++++ b/src/pages/about/about.md
+@@ -7,4 +7,4 @@ pronouns: "she/her"
+ website: "http://janakammaa.github.io/"
+ ---
+ 
+-Highly skilled and experienced law enforcement professional with over two decades of service in various specialized units. Adept at conducting complex investigations, coordinating tactical operations, and providing leadership in high-pressure situations. Known for exceptional problem-solving abilities, strategic thinking, and dedication to upholding the law. Seeking opportunities to leverage expertise in a challenging environment where I can continue to make a meaningful impact.
++Hey, I'm Janaki! I currently work as a software engineer. Experience in designing and developing APIs, building scalable analytics systems and crafting data-driven solutions. My core strengths lie in Python programming and SQL, and I enjoy working at the intersection of data engineering and backend development. Whether it's architecting efficient data pipelines or optimizing query performance, I’m always eager to dig deeper and deliver clean, maintainable solutions.
+diff --git a/src/pages/blogs/home-mmouzo.md b/src/pages/blogs/home-mmouzo.md
+deleted file mode 100644
+index 2cfcfbb..0000000
+--- a/src/pages/blogs/home-mmouzo.md
++++ /dev/null
+@@ -1,8 +0,0 @@
+----
+-title: The Crew
+-date: 11/2022 - Present
+-url: http://em.gl/giw
+-url_name: em.gl
+----
+-
+-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+diff --git a/src/pages/contact/github.md b/src/pages/contact/github.md
+index 23f657c..8ac8bd1 100644
+--- a/src/pages/contact/github.md
++++ b/src/pages/contact/github.md
+@@ -1,5 +1,5 @@
+ ---
+ title: Github
+ icon: carbon:logo-github
+-url: https://github.com/janakammaa
++url: https://github.com/janakammaa/
+ ---
+\ No newline at end of file
+diff --git a/src/pages/contact/linkedin.md b/src/pages/contact/linkedin.md
+index b9559d3..386efd2 100644
+--- a/src/pages/contact/linkedin.md
++++ b/src/pages/contact/linkedin.md
+@@ -1,5 +1,5 @@
+ ---
+ title: Linkedin
+ icon: carbon:logo-linkedin
+-url: http://linkedin.com/in/janaki-samala
++url: http://linkedin.com/in/janaki-samala/
+ ---
+\ No newline at end of file
+diff --git a/src/pages/contact/telegram.md b/src/pages/contact/telegram.md
+deleted file mode 100644
+index e730c22..0000000
+--- a/src/pages/contact/telegram.md
++++ /dev/null
+@@ -1,5 +0,0 @@
+----
+-title: Telegram
+-icon: mdi:telegram
+-url: https://t.me/
+----
+\ No newline at end of file
+diff --git a/src/pages/projects/spotfilm.md b/src/pages/projects/spotfilm.md
+deleted file mode 100644
+index 19ad3de..0000000
+--- a/src/pages/projects/spotfilm.md
++++ /dev/null
+@@ -1,8 +0,0 @@
+----
+-title: DataAir
+-url: http://dan.ma/humbe
+-tags: ["react", "javaScript", "axios", "HTML", "SCSS", "CSS"]
+-date: 2022
+----
+-
+-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+diff --git a/src/pages/studies/studie1.md b/src/pages/studies/studie1.md
+index dd303f4..ec26895 100644
+--- a/src/pages/studies/studie1.md
++++ b/src/pages/studies/studie1.md
+@@ -1,15 +1,11 @@
+ ---
+-title: Bachelor of Science in Criminal Justice
+-location: University of California, Los Angeles (UCLA)
++title: Bachelor of Engineering
++location: University of Andhra, Andhra Pradesh (AP)
+ url: http://foeberoz.gm/kuj
+-institute: University of California
+-date: 1970-1975
++institute: University of Andhra
++date: 2013-2016
+ tags:
+   [
+-    "Criminal Justice",
+-    "Law Enforcement",
+-    "Legal Studies",
+-    "Public Safety",
+-    "Court System",
++    "Engineering",
+   ]
+ ---
+diff --git a/src/pages/studies/studie2.md b/src/pages/studies/studie2.md
+index 58e5bb6..6a574cf 100644
+--- a/src/pages/studies/studie2.md
++++ b/src/pages/studies/studie2.md
+@@ -1,8 +1,8 @@
+ ---
+-title: Advanced SWAT Tactics and Leadership Training
+-location: FBI Academy
++title: Higher Secondary Education
++location: Andhra Pradesh
+ url: http://ni.sb/mehanad
+ institute: FBI Academy
+-date: 1975-1980
+-tags: ["Conflict Resolution", "Strategic Planning", "Risk Assessment", "Firearms Training", "Emergency Response"]
++date: 2000-2013
++tags: ["School"]
+ ---
+\ No newline at end of file
+diff --git a/src/pages/works/work1.md b/src/pages/works/work1.md
+index 4928e78..4921264 100644
+--- a/src/pages/works/work1.md
++++ b/src/pages/works/work1.md
+@@ -1,14 +1,10 @@
+ ---
+-title: Senior Detective
+-date: 1990 - Present
++title: Senior Tech Lead
++date: 2016 - Present
+ url: http://ropibbe.nf/savadru
+-location: Los Angeles, California
+-org: Los Angeles Police Department (LAPD)
+-tags: ["Law Enforcement", "Police Work", "Tactical Operations", "Case Management"]
++location: Chennai, India
++org: Elait IT Technologies Pvt Ltd.
++tags: ["Python"]
+ ---
+ 
+-- Lead investigations into organized crime, drug trafficking, and high-profile criminal activities.
+-- Conducted extensive surveillance operations utilizing advanced equipment and techniques to gather critical intelligence.
+-- Collaborated with federal agencies such as the FBI and DEA on joint task forces to dismantle criminal syndicates.
+-- Played a pivotal role in numerous undercover operations, successfully infiltrating criminal organizations and gathering actionable evidence for prosecution.
+-- Trained and mentored junior officers in surveillance tactics, undercover operations, and tactical maneuvers.
++- 
+\ No newline at end of file
+diff --git a/src/pages/works/work2.md b/src/pages/works/work2.md
+deleted file mode 100644
+index bbf2cac..0000000
+--- a/src/pages/works/work2.md
++++ /dev/null
+@@ -1,22 +0,0 @@
+----
+-title: Tactical Team Leader
+-date: 1985 - 1990
+-url: http://atawajof.dz/vonilzor
+-location: Los Angeles, California
+-org: Los Angeles County Sheriff's Department – SWAT Division
+-tags:
+-  [
+-    "SWAT",
+-    "Surveillance",
+-    "Undercover Operations",
+-    "Evidence Gathering",
+-    "Case Solving",
+-    "Interviewing Skills",
+-  ]
+----
+-
+-- Led SWAT operations in high-risk situations, including hostage rescues, armed standoffs, and counter-terrorism missions.
+-- Developed and implemented tactical plans tailored to specific scenarios, ensuring the safety of hostages, civilians, and law enforcement personnel.
+-- Conducted specialized training for SWAT team members in firearms proficiency, close-quarters combat, tactical movement, and hostage negotiation.
+-- Coordinated with local, state, and federal agencies to support joint operations and enhance interagency cooperation.
+-- Provided expertise and assistance in the planning and execution of high-profile security details for visiting dignitaries, VIPs, and major events.
